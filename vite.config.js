@@ -2,6 +2,6 @@ export default {
     build: {
         outDir: 'docs'
     },
-    assetsInclude: ['**/*.glb']
+    assetsInclude: ['**/*.glb', '**/*.gltf', '**/*.jpg', '**/*.obj'],
 };
 

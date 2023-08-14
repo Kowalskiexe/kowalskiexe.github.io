@@ -23,13 +23,25 @@ camera.position.z = 5;
 
 let globe = null;
 
+const textureLoader = new THREE.TextureLoader();
+const planetMaterial = new THREE.MeshStandardMaterial({
+    roughness: 0.6,
+    metalness: 0.1,
+    map: textureLoader.load('./3d/3d/textures/1_earth_8k.jpg'),
+});
+const textMaterial = new THREE.MeshNormalMaterial();
+
+
 const loader = new GLTFLoader();
-import planetUrl from './3d/m_planet2.glb';
-console.log(planetUrl);
+import planetUrl from './3d/m_planet3.glb';
 loader.load(planetUrl, function(gltf) {
     scene.add(gltf.scene);
     globe = gltf.scene;
-    console.log(globe);
+    console.log(globe.children);
+    const p = globe.getObjectByName('Sphere');
+    p.material = planetMaterial;
+    const t = globe.getObjectByName('Text');
+    t.material = textMaterial;
 }, undefined, function (error) {
     console.error(error);
 });
